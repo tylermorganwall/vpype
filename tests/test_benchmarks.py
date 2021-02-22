@@ -2,7 +2,6 @@ import pytest
 
 import vpype as vp
 import vpype_cli
-from vpype_viewer import ViewMode, render_image
 
 from .utils import TEST_FILE_DIRECTORY
 
@@ -51,24 +50,3 @@ def test_benchmark_linemerge(benchmark):
 def doc_for_render():
     return vp.read_multilayer_svg(str(TEST_FILE_DIRECTORY / "benchmark/7k_lines.svg"), 0.1)
 
-
-@pytest.mark.parametrize(
-    "kwargs",
-    [
-        pytest.param({"view_mode": ViewMode.OUTLINE}, id="outline"),
-        pytest.param(
-            {"view_mode": ViewMode.OUTLINE, "show_points": True}, id="outline_points"
-        ),
-        pytest.param(
-            {"view_mode": ViewMode.OUTLINE, "show_pen_up": True}, id="outline_pen_up"
-        ),
-        pytest.param({"view_mode": ViewMode.OUTLINE_COLORFUL}, id="outline_colorful"),
-        pytest.param({"view_mode": ViewMode.PREVIEW}, id="preview"),
-    ],
-)
-def test_benchmark_viewer(request, benchmark, doc_for_render, kwargs):
-    if request.config.getoption("--skip-image-similarity"):
-        pytest.skip("viewer benchmark skipped (--skip-image-similarity)")
-
-    # noinspection PyArgumentList
-    benchmark(render_image, doc_for_render, size=(4096, 4096), **kwargs)

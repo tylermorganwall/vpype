@@ -11,4 +11,3 @@ API reference
 
    vpype
    vpype_cli
-   vpype_viewer

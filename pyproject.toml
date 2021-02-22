@@ -16,16 +16,12 @@ classifiers = [
 packages = [
     { include = "vpype" },
     { include = "vpype_cli" },
-    { include = "vpype_viewer"},
 ]
 include = [
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
-    "vpype/*.toml",
-    "vpype_viewer/shaders/*.glsl",
-    "vpype_viewer/resources/*.png",
-    "vpype_viewer/qtviewer/resources/*",
+    "vpype/*.toml"
 ]
 
 [tool.poetry.scripts]
@@ -43,7 +39,6 @@ moderngl = "^5.6.2"
 multiprocess = "^0.70.11"
 numpy = "^1.20"
 Pillow = "^8.1.0"
-PySide2 = "^5.15.2"
 Shapely = {extras = ["vectorized"], version = "~1.7.1"}
 scipy = "^1.6"
 setuptools = "^51.0.0"
@@ -87,8 +82,7 @@ omit = [
     "*/.tox/*",
     "*/__main__.py",
     "*/setup.py",
-    "*/venv*/*",
-    "vpype_viewer/qtviewer/*",  # cannot be tested
+    "*/venv*/*"
 ]
 
 [tool.coverage.report]
@@ -112,4 +106,4 @@ target-version = ["py36", "py37", "py38"]
 [tool.isort]
 profile = "black"
 line_length = 95
-src_paths = ["vpype", "vpype_cli", "vpype_viewer", "tests"]
+src_paths = ["vpype", "vpype_cli", "tests"]
