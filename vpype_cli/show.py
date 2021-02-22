@@ -4,8 +4,6 @@ import click
 import numpy as np
 
 import vpype as vp
-import vpype_viewer
-from vpype_viewer import ViewMode
 
 from .cli import cli
 
@@ -94,14 +92,15 @@ def show(
             unit,
         )
     else:
-        view_mode = ViewMode.PREVIEW
-        if outline or show_points:
-            view_mode = ViewMode.OUTLINE
-        if colorful:
-            view_mode = ViewMode.OUTLINE_COLORFUL
-
-        vpype_viewer.show(
-            document, view_mode=view_mode, show_pen_up=show_pen_up, show_points=show_points
+        _show_mpl(
+            document,
+            show_axes,
+            show_grid,
+            show_pen_up,
+            show_points,
+            hide_legend,
+            colorful,
+            unit,
         )
 
     return document
